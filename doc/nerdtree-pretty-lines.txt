@@ -1,0 +1,138 @@
+*nerdtree-pretty-lines.txt*   Pretty tree connectors for NERDTree
+
+==============================================================================
+CONTENTS                                            *nerdtree-pretty-lines*
+
+1. Introduction ........................ |nerdtree-pretty-lines-introduction|
+2. Installation ........................ |nerdtree-pretty-lines-installation|
+3. Configuration ....................... |nerdtree-pretty-lines-options|
+4. Notes ............................... |nerdtree-pretty-lines-notes|
+
+==============================================================================
+1. INTRODUCTION                           *nerdtree-pretty-lines-introduction*
+
+NERDTree Pretty Lines replaces NERDTree's plain indentation with tree
+connectors such as:
+
+>
+    ├─ src/
+    │  ├─ main.cpp
+    │  ╰─ renderer.cpp
+    ╰─ tests/
+       ╰─ test.cpp
+<
+
+Only the tree prefix is changed. NERDTree still renders node names, directory
+arrows, DevIcons, Git status indicators and other node flags normally.
+
+The plugin requires NERDTree. If NERDTree has not initialized, Pretty Lines
+exits silently without changing Vim state.
+
+==============================================================================
+2. INSTALLATION                             *nerdtree-pretty-lines-installation*
+
+With vim-plug:
+
+>
+    Plug 'preservim/nerdtree'
+    Plug 'msdoslite/nerdtree-pretty-lines'
+<
+
+Then run:
+
+>
+    :PlugInstall
+<
+
+NERDTree must be installed separately.
+
+==============================================================================
+3. CONFIGURATION                              *nerdtree-pretty-lines-options*
+
+All options are global variables and should normally be set in vimrc.
+
+                                                    *g:NERDTreePrettyLinesEnabled*
+g:NERDTreePrettyLinesEnabled
+        Enable or disable the extension.
+        Default: 1
+
+>
+    let g:NERDTreePrettyLinesEnabled = 0
+<
+
+                                                   *g:NERDTreePrettyLinesVertical*
+g:NERDTreePrettyLinesVertical
+        Character used for a continuing vertical branch.
+        Default: "│"
+
+>
+    let g:NERDTreePrettyLinesVertical = '│'
+<
+
+                                                     *g:NERDTreePrettyLinesBranch*
+g:NERDTreePrettyLinesBranch
+        Character used when more siblings follow.
+        Default: "├"
+
+>
+    let g:NERDTreePrettyLinesBranch = '├'
+<
+
+                                                       *g:NERDTreePrettyLinesLast*
+g:NERDTreePrettyLinesLast
+        Character used for the final node at a level.
+        Default: "╰"
+
+        For a traditional square tree:
+
+>
+    let g:NERDTreePrettyLinesLast = '└'
+<
+
+                                                 *g:NERDTreePrettyLinesHorizontal*
+g:NERDTreePrettyLinesHorizontal
+        Horizontal connector character.
+        Default: "─"
+
+>
+    let g:NERDTreePrettyLinesHorizontal = '─'
+<
+
+                                                        *g:NERDTreePrettyLinesGap*
+g:NERDTreePrettyLinesGap
+        Text inserted after a branch connector.
+        Default: ""
+
+        Example with one space:
+
+>
+    let g:NERDTreePrettyLinesGap = ' '
+<
+
+                                                    *g:NERDTreePrettyLinesFilePad*
+g:NERDTreePrettyLinesFilePad
+        Extra padding before file nodes. This compensates visually for the
+        expand/collapse arrow displayed for directory nodes.
+        Default: two spaces.
+
+>
+    let g:NERDTreePrettyLinesFilePad = '  '
+<
+
+==============================================================================
+4. NOTES                                        *nerdtree-pretty-lines-notes*
+
+NERDTreePrettyLines disables:
+>
+    g:NERDTreeCascadeSingleChildDir
+    g:NERDTreeCascadeOpenSingleChildDir
+<
+
+This is required because collapsed directory chains such as "foo/bar/baz/"
+do not have a one-to-one relationship with tree levels.
+
+The plugin is loaded as a NERDTree extension from the "nerdtree_plugin"
+runtime directory. It does not require a separate loader.
+
+==============================================================================
+vim:tw=78:ts=8:noet:ft=help:norl:
